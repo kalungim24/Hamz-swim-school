@@ -214,57 +214,43 @@ h1, h2, h3 {
     font-weight: 800;
 }
 
-.about-flex {
-    display: flex;
-    flex-wrap: wrap-reverse; /* Reverses order on small screens so text is below image, but on large screens image is on right */
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
+/* We drop the flexbox here in favor of a standard block 
+   so the text can wrap around the floated image (newspaper style) */
+.about-content-wrapper {
+    padding: 40px;
+}
+
+/* The image floats to the right on large screens */
+.about-image-float {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.about-image-float img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
 @media (min-width: 900px) {
-    .about-flex {
-        flex-wrap: nowrap;
-        flex-direction: row-reverse; /* On wide screens: Text wraps on the left, Image is on the right */
+    .about-image-float {
+        float: right; /* Newspaper wrap effect */
+        width: 40%;
+        margin-left: 40px;
+        margin-bottom: 20px;
     }
 }
 
-.about-text {
-    flex: 1.5; /* Takes up slightly more space for the text wrapping */
-    min-width: 300px;
-    padding: 40px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-text:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.about-text p {
-    margin-bottom: 20px;
+.about-text-content {
     font-size: 1.1rem;
     color: var(--text-color);
     line-height: 1.8;
 }
 
-.about-image {
-    flex: 1;
-    min-width: 300px;
-    padding: 15px;
-    transition: transform 0.3s ease;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-}
-
-.about-image:hover {
-    transform: translateY(-5px) scale(1.02);
-}
-
-.about-image img {
-    border-radius: 12px;
-    object-fit: cover;
+.about-text-content p {
+    margin-bottom: 20px;
 }
 
 .btn-primary, .btn-shop, .btn-service{
