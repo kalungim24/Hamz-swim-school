@@ -12,8 +12,13 @@
     --bg-color:#f0f9ff;
     --text-color:#0f172a;
     --light-gray:#64748b;
+    
+    /* GLASSMORPHISM LIGHT THEME VARIABLES */
+    /* Controls the transparency of the glass cards */
     --glass-bg: rgba(255, 255, 255, 0.4);
+    /* Adds a subtle sheer white line around elements to give the illusion of an edge of glass */
     --glass-border: rgba(255, 255, 255, 0.5);
+    /* A soft, widespread shadow to lift the glass off the background */
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
@@ -21,8 +26,13 @@ body.dark-theme{
     --bg-color:#020617;
     --text-color:#f8fafc;
     --primary-blue:#38bdf8;
+    
+    /* GLASSMORPHISM DARK THEME VARIABLES */
+    /* Darker, less transparent background so text stays readable over neon blobs */
     --glass-bg: rgba(15, 23, 42, 0.6);
+    /* Very subtle border to avoid harsh lines in dark mode */
     --glass-border: rgba(255, 255, 255, 0.08);
+    /* Heavier, darker shadow for depth in a dark environment */
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
     --grad:linear-gradient(135deg, #0ea5e9, #020617);
 }
@@ -83,15 +93,19 @@ h1, h2, h3 {
 }
 
 /* --- Glassmorphism Base Utility --- */
+/* This is the core class applied to Cards, Hero sections, and About panels. 
+   It dynamically pulls the light/dark variables defined above. */
 .glass-panel {
     background: var(--glass-bg);
+    /* backdrop-filter is the magic CSS property that blurs whatever is BEHIND the element */
     backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); /* Safari support */
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     border-radius: 24px;
 }
 
+/* This wrapper ensures content sits on top of the animated background blobs */
 .main-wrapper {
     position: relative;
     z-index: 1;
@@ -149,7 +163,9 @@ h1, h2, h3 {
     overflow: hidden;
 }
 
-/* Optional: Keep the image but blend it into the glass style */
+/* The Hero image overlay. 
+   We put the image on a pseudo-element (::before) instead of the main .hero div 
+   so we can apply opacity and mix-blend-mode without affecting the text inside it. */
 .hero::before {
     content: '';
     position: absolute;
@@ -157,7 +173,7 @@ h1, h2, h3 {
     background: url(../imgs/coach\ hamz.jpg) center/cover;
     opacity: 0.6; /* Increased opacity so the coach is much more visible */
     z-index: -1;
-    /* Soft blend mode to merge the photo with the glass orbs without hiding it completely */
+    /* mix-blend-mode allows the underlying neon glass orbs to bleed THROUGH the photo */
     mix-blend-mode: overlay; 
 }
 
