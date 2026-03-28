@@ -3,41 +3,115 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root{
-    --primary-blue:#0f3460;
+    --primary-blue: #0ea5e9; /* Brighter, modern cyan/blue */
     --accent-green:#25d366;/*whatsapp green*/
-    --bg-color:#e0fbfc;
-    --text-color:#22333b;
-    --light-gray:#3d5a80;
-    
+    --bg-color:#f0f9ff;
+    --text-color:#0f172a;
+    --light-gray:#64748b;
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
 body.dark-theme{
     --bg-color:#020617;
-    --text-color:#98f5e1;
-    --primary-blue:#2ecc71;
-    --grad:linear-gradient(rgb(4, 37, 218), rgba(0, 0, 0, 0.906));
+    --text-color:#f8fafc;
+    --primary-blue:#38bdf8;
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    --grad:linear-gradient(135deg, #0ea5e9, #020617);
 }
-body{
+
+body {
     color: var(--text-color);
-    background:var(--bg-color) ;
     background-color: var(--bg-color);
     line-height: 1.6;
-    padding-bottom: 60px;/*Space for floating marquee*/
-
+    padding-bottom: 60px;
+    overflow-x: hidden;
+    position: relative;
 }
+
+h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* --- Glassmorphism Background Orbs --- */
+.glass-bg-blobs {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 20s infinite ease-in-out alternate;
+}
+.blob-1 {
+    top: -10%; left: -10%;
+    width: 500px; height: 500px;
+    background: #0ea5e9;
+    animation-delay: 0s;
+}
+.blob-2 {
+    bottom: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: #3b82f6;
+    animation-delay: -5s;
+}
+.blob-3 {
+    top: 40%; left: 60%;
+    width: 400px; height: 400px;
+    background: #8b5cf6;
+    opacity: 0.4;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, 50px) scale(1.1); }
+    100% { transform: translate(-50px, 20px) scale(0.9); }
+}
+
+/* --- Glassmorphism Base Utility --- */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 24px;
+}
+
+.main-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
 .navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    /*code for glass*/
-    background: color-mix(in srgb, var(--bg-color), transparent 20%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 50px;
+    position: sticky;
+    top: 20px;
+    font-weight: 600;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
     border-bottom: solid color-mix(in srgb, var(--text-color), transparent 90%);
     /*ends here*/
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
@@ -72,27 +146,124 @@ body{
 }
 /*3. Hero & Banners*/
 .hero{
-    
     height: 100vh;
-    min-height: 600px;
-    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0, 0.5)), 
-    url(../imgs/coach\ hamz.jpg) center/cover;
+    min-height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #ccc;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden;
 }
+
+/* Optional: Keep the image but blend it into the glass style */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url(../imgs/coach\ hamz.jpg) center/cover;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.hero-content {
+    padding: 4rem 3rem;
+    max-width: 800px;
+    transition: transform 0.3s ease;
+}
+.hero-content:hover {
+    transform: translateY(-5px);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--text-color), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero p {
+    font-size: 1.25rem;
+    color: var(--light-gray);
+    margin-bottom: 2rem;
+}
+
+/* Glassmorphism About Section */
+.about-section {
+    padding: 100px 5%;
+    position: relative;
+    z-index: 1;
+}
+
+.about-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 800;
+}
+
+.about-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    padding: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-text:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.about-image:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.about-image img {
+    border-radius: 12px;
+    object-fit: cover;
+}
+
 .btn-primary, .btn-shop, .btn-service{
     display: inline-block;
-    padding: 12px 25px;
+    padding: 14px 32px;
     background: var(--primary-blue);                                                          
-    color: var(--bg-color);
+    color: #ffffff;
+    font-weight: 600;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px;
     margin-top: 15px;
-    transition: 0.3s;
-    box-shadow: rgb(31, 46, 133) ;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+}
+.btn-primary:hover, .btn-shop:hover, .btn-service:hover{
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.6);
+    background: color-mix(in srgb, var(--primary-blue), white 10%);
 }
 /*4.The floating Whatsapp Icon*/
 .whatsapp-float{
