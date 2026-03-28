@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services & booking | Hamz</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-     <nav class="navbar">
+    <!-- Abstract Background Blobs for Glass Effect -->
+    <div class="glass-bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="main-wrapper">
+     <nav class="navbar glass-panel">
         <div class="logo"><img src="imgs/SWIM.png" alt="hamz logo" style="max-height: 40px;" >Hamz swim school</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a> </li>
@@ -19,16 +27,16 @@
             </label>
         </ul>
     </nav>
-    <header class="services-header">
-        <div class="container">
+    <header class="hero" style="min-height: 400px;">
+        <div class="hero-content glass-panel" style="padding: 2rem 3rem;">
             <h1>Our services</h1>
-            <p>Expert coaching and pro pool man=intence solutions</p>
+            <p>Expert coaching and pro pool maintenance solutions</p>
         </div>
     </header>
 
     <section class="service-section" id="lessons">
-        <div class="conatiner">
-            <h2>Swimming Lessons & coaching</h2>
+        <div class="container glass-panel" style="padding: 40px; margin: 40px auto; max-width: 1000px; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Swimming Lessons & coaching</h2>
             <p>Book your slot for private or group coaching</p>
             <div class="calender-container">
                 <h3>Availabilty Schedule</h3>
@@ -40,16 +48,16 @@
                          class="btn-service" >Inquire about lessons</a>
         </div>
     </section>
-    <hr class="section-divider">
+    <hr class="section-divider" style="opacity: 0.2; border: 1px solid var(--text-color); width: 80%; margin: 20px auto;">
     <section class="service-section" id="water-treatment">
-        <div class="container">
-            <h2>Pool water treatment</h2>
+        <div class="container glass-panel" style="padding: 40px; margin: 40px auto; max-width: 1000px; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Pool water treatment</h2>
             <p>Specialised chemical balancing, algaecide application etc.</p>
-            <div class="treatment-features">
-                <ul>
+            <div class="treatment-features" style="margin: 30px 0;">
+                <ul style="list-style: none; display: inline-block; text-align: left; font-size: 1.1rem; line-height: 2;">
                     <li>✅ PH and chlorine balancing </li>
-                    <li>✅Greento blue recovery </li>
-                    <li>✅Flocculation and vacuuming</li>
+                    <li>✅ Green to blue recovery </li>
+                    <li>✅ Flocculation and vacuuming</li>
                 </ul>
             </div>
             <a href="http://wa.me/256708009153?text=I%20want%20to%20to%20book%20a%20professional%20pool-cleanse" 
@@ -67,7 +75,7 @@
             <span>&nbsp;</span>
         </div>
     </div>
-    
+    </div> <!-- End main-wrapper -->
    <script type="module" src="js/main.js"></script> 
 </body>
 </html>

@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equip shop|Hamz swim school</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-     <nav class="navbar">
+    <!-- Abstract Background Blobs for Glass Effect -->
+    <div class="glass-bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="main-wrapper">
+     <nav class="navbar glass-panel">
         <div class="logo"> <img src="imgs/SWIM.png" alt="hamz logo" style="max-height: 40px;" >Hamz swim school</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a> </li>
@@ -20,17 +28,17 @@
         </ul>
     </nav>
 
-    <header class="shop-header">
-        <div class="container">
+    <header class="hero" style="min-height: 400px;">
+        <div class="hero-content glass-panel" style="padding: 2rem 3rem;">
             <h1>Swim gear</h1>
             <p>Quality gear selected.</p>
         </div>
     </header>
 
     <section class="shop-section">
-        <div class="cotainer">
+        <div class="container" style="padding: 50px 5%;">
             <div class="product-grid" id="product-list">
-                <div class="product-card">
+                <div class="product-card glass-panel">
                     <img src="imgs/goggles_blue.jpg" alt="swim googles">
                     <div class="product-info">
                         <h3>ZOKE SWIM GOGGLES</h3>
@@ -40,7 +48,7 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card glass-panel">
                     <img src="imgs/paddles_orange.jpg" alt="swim paddles">
                     <div class="product-info">
                         <h3>Paddles</h3>
@@ -50,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card glass-panel">
                     <img src="imgs/shirt_blue.jpg" alt="Hamz club shirts">
                     <div class="product-info">
                         <h3>Shirt</h3>
@@ -60,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card glass-panel">
                     <img src="imgs/stickers.jpg" alt="swim googles">
                     <div class="product-info">
                         <h3>stickers</h3>
@@ -70,7 +78,7 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card glass-panel">
                     <img src="imgs/coach hamz.jpg" alt="swim googles">
                     <div class="product-info">
                         <h3> Jumper</h3>
@@ -92,6 +100,7 @@
             <span>&nbsp;</span>
         </div>
     </div>
+   </div> <!-- End main-wrapper -->
    <script type="module" src="js/main.js"></script> 
 </body>
 </html>

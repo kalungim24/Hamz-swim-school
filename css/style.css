@@ -12,8 +12,13 @@
     --bg-color:#f0f9ff;
     --text-color:#0f172a;
     --light-gray:#64748b;
+    
+    /* GLASSMORPHISM LIGHT THEME VARIABLES */
+    /* Controls the transparency of the glass cards */
     --glass-bg: rgba(255, 255, 255, 0.4);
+    /* Adds a subtle sheer white line around elements to give the illusion of an edge of glass */
     --glass-border: rgba(255, 255, 255, 0.5);
+    /* A soft, widespread shadow to lift the glass off the background */
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
@@ -21,8 +26,13 @@ body.dark-theme{
     --bg-color:#020617;
     --text-color:#f8fafc;
     --primary-blue:#38bdf8;
+    
+    /* GLASSMORPHISM DARK THEME VARIABLES */
+    /* Darker, less transparent background so text stays readable over neon blobs */
     --glass-bg: rgba(15, 23, 42, 0.6);
+    /* Very subtle border to avoid harsh lines in dark mode */
     --glass-border: rgba(255, 255, 255, 0.08);
+    /* Heavier, darker shadow for depth in a dark environment */
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
     --grad:linear-gradient(135deg, #0ea5e9, #020617);
 }
@@ -83,15 +93,19 @@ h1, h2, h3 {
 }
 
 /* --- Glassmorphism Base Utility --- */
+/* This is the core class applied to Cards, Hero sections, and About panels. 
+   It dynamically pulls the light/dark variables defined above. */
 .glass-panel {
     background: var(--glass-bg);
+    /* backdrop-filter is the magic CSS property that blurs whatever is BEHIND the element */
     backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); /* Safari support */
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     border-radius: 24px;
 }
 
+/* This wrapper ensures content sits on top of the animated background blobs */
 .main-wrapper {
     position: relative;
     z-index: 1;
@@ -108,24 +122,16 @@ h1, h2, h3 {
     border-radius: 50px;
     position: sticky;
     top: 20px;
-    font-weight: 600;
-    z-index: 100;
-    transition: all 0.3s ease;
-}
-    border-bottom: solid color-mix(in srgb, var(--text-color), transparent 90%);
-    /*ends here*/
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
     font-weight: 800;
-    margin: 10px;
-    width: 90%;
-    max-width: 1200px;
-    border-radius: 50px;
-    border: 1px solid color-mix(in srgb, var(--text-color), transparent 85%);
-   /*color: var(--text-color); */
     z-index: 1001;
-    transition: all 0.4s;
+    transition: all 0.4s ease;
+    
+    /* Reduced transparency so it's readable over complex backgrounds */
+    background: color-mix(in srgb, var(--bg-color) 85%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid color-mix(in srgb, var(--text-color), transparent 85%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 .logo{
     display: inline-block;
@@ -157,14 +163,18 @@ h1, h2, h3 {
     overflow: hidden;
 }
 
-/* Optional: Keep the image but blend it into the glass style */
+/* The Hero image overlay. 
+   We put the image on a pseudo-element (::before) instead of the main .hero div 
+   so we can apply opacity and mix-blend-mode without affecting the text inside it. */
 .hero::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: url(../imgs/coach\ hamz.jpg) center/cover;
-    opacity: 0.15;
+    opacity: 0.6; /* Increased opacity so the coach is much more visible */
     z-index: -1;
+    /* mix-blend-mode allows the underlying neon glass orbs to bleed THROUGH the photo */
+    mix-blend-mode: overlay; 
 }
 
 .hero-content {
@@ -206,14 +216,21 @@ h1, h2, h3 {
 
 .about-flex {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse; /* Reverses order on small screens so text is below image, but on large screens image is on right */
     gap: 40px;
     align-items: center;
     justify-content: center;
 }
 
+@media (min-width: 900px) {
+    .about-flex {
+        flex-wrap: nowrap;
+        flex-direction: row-reverse; /* On wide screens: Text wraps on the left, Image is on the right */
+    }
+}
+
 .about-text {
-    flex: 1;
+    flex: 1.5; /* Takes up slightly more space for the text wrapping */
     min-width: 300px;
     padding: 40px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -228,6 +245,7 @@ h1, h2, h3 {
     margin-bottom: 20px;
     font-size: 1.1rem;
     color: var(--text-color);
+    line-height: 1.8;
 }
 
 .about-image {
@@ -236,6 +254,8 @@ h1, h2, h3 {
     padding: 15px;
     transition: transform 0.3s ease;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .about-image:hover {
@@ -319,16 +339,22 @@ h1, h2, h3 {
     padding: 40px 5%;
 }
 .product-card{
-    border: 1px solid #ddd;
+    border: none; /* Let the glass-panel handle the border */
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 24px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 .product-card img{
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 12px;
+    margin-bottom: 15px;
 }
 /* 8. Availability calendar styles */
 .calender-container{
