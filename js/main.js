@@ -1,3 +1,10 @@
+/** 
+ * Project Hamz swim school digital platform
+ * Version :1.0.0(MVP) 
+ * Developer:Mark Kalungi
+ * Role:Full stack developer and systems architect
+ * Stack:Firebae(Auth/Firestore) vanilla Js, css3
+ * Buildimg digital solutions for Kampala's rising startups**/
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, onSnapshot, doc, updateDoc, deleteDoc, setDoc } 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -162,12 +169,13 @@ export async function loadProducts() {
                 ? item.image_url
                 : 'imgs/SWIM.png';
         const card = `
-            <div class="product-card" data-dynamic-product="true">
+            <div class="product-card glass-panel" data-dynamic-product="true">
                 <img src="${imageUrl}" alt="${item.name}">
                 <div class="product-info">
                     <h3>${item.name}</h3>
                     <p class="price">UGX ${item.price}</p>
-                    <a href="https://wa.me/256XXXXXXXXX?text=I%20want%20to%20buy%20${encodeURIComponent(item.name)}" 
+                    <p style="font-size: 0.9rem; color: var(--light-gray); margin-bottom: 10px;">${item.description || "Quality swim equipment from Hamz Swim School"}</p>
+                    <a href="http://wa.me/256708009153?text=I%20want%20to%20buy%20${encodeURIComponent(item.name)}" 
                        class="btn-shop">Order on WhatsApp</a>
                 </div>
             </div>
@@ -177,11 +185,12 @@ export async function loadProducts() {
 }
 
 // 3. ADMIN: Add a new product
-export async function addProduct(name, price, imageUrl) {
+export async function addProduct(name, price, description, imageUrl) {
     try {
         await addDoc(collection(db, "products"), {
             name: name,
             price: price,
+            description: description || "Quality swim equipment from Hamz Swim School",
             image_url: imageUrl,
             createdAt: new Date()
         });
@@ -272,6 +281,7 @@ export async function loadAdminProducts() {
                     <img src="${imageUrl}" alt="${item.name}" style="max-width: 100px; height: auto;">
                     <h4>${item.name}</h4>
                     <p>UGX ${item.price}</p>
+                    <p style="font-size: 0.8rem; color: var(--light-gray); margin: 5px 0;">${item.description || "No description provided"}</p>
                     <button onclick="deleteProduct('${doc.id}')" style="background: red; color: white; padding: 5px 10px; border: none; cursor: pointer;">Delete</button>
                 </div>
             `;
@@ -309,16 +319,18 @@ export function initializeAdmin() {
             
             const name = document.getElementById('prod-name').value.trim();
             const price = document.getElementById('prod-price').value.trim();
+            const description = document.getElementById('prod-description').value.trim();
             const imageUrl = document.getElementById('prod-img-url').value.trim();
             
             if (!name || !price || !imageUrl) {
-                alert("Please fill in all product fields and provide an image URL!");
+                alert("Please fill in all required fields (name, price, and image URL)!");
                 return;
             }
 
-            await addProduct(name, parseInt(price), imageUrl);
+            await addProduct(name, parseInt(price), description, imageUrl);
             document.getElementById('prod-name').value = '';
             document.getElementById('prod-price').value = '';
+            document.getElementById('prod-description').value = '';
             document.getElementById('prod-img-url').value = '';
         });
     }
@@ -421,6 +433,98 @@ if (togglebtn) {
         } else {
             document.body.classList.remove('dark-theme');
             localStorage.setItem('theme', 'light');
+        }
+    });
+}
+
+// Add structured data for SEO
+function addStructuredData() {
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": ["LocalBusiness", "SportsActivityLocation"],
+        "name": "Hamz Swim School",
+        "description": "Professional swimming lessons, pool maintenance and quality swim equipment in Kampala, Uganda",
+        "url": "https://hamz-swim-school.web.app",
+        "telephone": "+256708009153",
+        "email": "info@hamzswimschool.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kampala",
+            "addressCountry": "Uganda"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "0.3476",
+            "longitude": "32.5825"
+        },
+        "openingHours": "Mo-Su 06:00-20:00",
+        "priceRange": "UGX 3000-150000",
+        "paymentAccepted": "Cash, Mobile Money",
+        "category": "Swimming School",
+        "servicesOffered": [
+            "Swimming Lessons",
+            "Pool Maintenance", 
+            "Water Treatment",
+            "Swim Equipment Sales"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Swim Equipment",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": "Swim Goggles",
+                    "price": "50000",
+                    "priceCurrency": "UGX"
+                },
+                {
+                    "@type": "Offer", 
+                    "itemOffered": "Swimming Paddles",
+                    "price": "80000",
+                    "priceCurrency": "UGX"
+                }
+            ]
+        }
+    };
+
+    // Create and inject structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(structuredData, null, 2);
+    document.head.appendChild(script);
+}
+
+// Add structured data when page loads
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addStructuredData);
+} else {
+    addStructuredData();
+}
+
+// Hamburger menu functionality
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    const links = navLinks.querySelectorAll('li a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
         }
     });
 }

@@ -1,3 +1,10 @@
+/** 
+ * Project Hamz swim school digital platform
+ * Version :1.0.0(MVP) 
+ * Developer:Mark Kalungi
+ * Role:Full stack developer and systems architect
+ * Stack:Firebae(Auth/Firestore) vanilla Js, css3
+ * Buildimg digital solutions for Kampala's rising startups**/
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";

@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="admin-body">
-      <nav class="navbar">
+
         <div class="logo">Hamz [ADMIN]</div>
         <ul class="nav-links">
             <li><a href="index.html">View site</a> </li>
             <li><button id="logout-btn" >logout</button> </li>
         </ul>
-    </nav>
+  
 
     <!-- Login Form (shown when not authenticated) -->
     <div id="login-section" class="container" style="display: none; max-width: 400px; margin: 50px auto; padding: 30px; border: 1px solid #ddd; border-radius: 8px;">
@@ -40,18 +40,19 @@
             <form action="" id="add-product-form">
                 <input type="text" id="prod-name" placeholder="Product Name" required>
                 <input type="number" name="" id="prod-price" placeholder="Price (UGX)" required>
+                <textarea id="prod-description" placeholder="Product Description (e.g. Professional anti-fog goggles for competitive swimming)" rows="3"></textarea>
                 <input type="text" id="prod-img-url" placeholder="Product Image URL (https://...)" required>
                 <button type="submit" class="btn-add">Add Product to shop</button>
             </form>
             <div id="admin-product-list"></div>
         </section>
-        <section class="admin-card">
+        <!-- <section class="admin-card">
             <h2>Update Home Page Poster</h2>
             <input type="text" id="poster-title" placeholder="Poster Title(e.g. Hiring!)">
             <textarea name="" id="poster-desc" placeholder="Brief description..."></textarea>
             <input type="text" id="poster-url" placeholder="Poster Image URL (https://...)">
             <button onclick="updatePoster()" class="btn-save">Update Poster</button>
-        </section>
+        </section> -->
         <section class="admin-card">
             <h2>Availability Toggler</h2>
             <p>Set each day’s mode: Public, Booked (Solo), Corporate only, or Unavailable.</p>

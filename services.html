@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services & booking | Hamz</title>
+    <meta name="author" content="Mark Kalungi">
+    <meta name="description" content="Professional swimming lessons, pool maintenance & water treatment services in Kampala, Uganda. Expert coaching for beginners and advanced swimmers.">
+    <meta name="keywords" content="swimming lessons Kampala, pool maintenance Uganda, water treatment, swim coaching, pool cleaning, chemical balancing, swimming instructor Kampala">
+    <meta property="og:title" content="Swimming Services & Pool Maintenance - Hamz Swim School">
+    <meta property="og:description" content="Expert swimming lessons and professional pool maintenance in Kampala, Uganda">
+    <meta property="og:image" content="https://hamz-swim-school.web.app/imgs/coach%20hamz.jpg">
+    <meta property="og:url" content="https://hamz-swim-school.web.app/services.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Swimming Services - Hamz Swim School">
+    <meta name="twitter:description" content="Professional swim lessons & pool maintenance">
+    <meta name="twitter:image" content="https://hamz-swim-school.web.app/imgs/coach%20hamz.jpg">
+    <link rel="canonical" href="https://hamz-swim-school.web.app/services.html">
+    <title>Swimming Lessons & Pool Maintenance Services | Hamz Swim School Kampala</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -17,14 +30,21 @@
     <div class="main-wrapper">
      <nav class="navbar glass-panel">
         <div class="logo"><img src="imgs/SWIM.png" alt="hamz logo" style="max-height: 40px;" >Hamz swim school</div>
-        <ul class="nav-links">
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a> </li>
-            <li><a href="shop.html" >Shop</a> </li>
+            <li><a href="shop.html">Shop</a> </li>
             <li><a href="services.html" class="active">Services</a> </li>
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider"></span>
-            </label>
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+            </li>
         </ul>
     </nav>
     <section class="service-section" id="lessons" style="padding-top: 100px;">

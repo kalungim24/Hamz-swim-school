@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://hamz-swim-school.web.app/</loc>
+        <lastmod>2025-03-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <description>Professional swimming lessons and equipment in Kampala, Uganda</description>
+    </url>
+    <url>
+        <loc>https://hamz-swim-school.web.app/shop.html</loc>
+        <lastmod>2025-03-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <description>Shop quality swim goggles, paddles, and training equipment</description>
+    </url>
+    <url>
+        <loc>https://hamz-swim-school.web.app/services.html</loc>
+        <lastmod>2025-03-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <description>Swimming lessons, pool maintenance and water treatment services</description>
+    </url>
+</urlset>

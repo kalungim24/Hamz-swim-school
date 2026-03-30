@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Allow: /css/
+Allow: /imgs/
+Allow: /js/
+
+# Block admin and config files
+Disallow: /admin.html
+Disallow: /*.json
+Disallow: /firebase.json
+
+# Sitemap location
+Sitemap: https://hamz-swim-school.web.app/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
